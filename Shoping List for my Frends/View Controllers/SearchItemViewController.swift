@@ -17,11 +17,21 @@ class SearchItemViewController: UIViewController {
     var products: [Product] = []
     var user: AppUser!
     var shopList: List!
+    var items: [Item]!
+    var itemsRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        itemsRef = DatabaseService.shared.getItems(uid: user.uid)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        itemsRef.observe(.value) {[weak self] snapshot in
+            self?.items = Item.getItems(snapshot: snapshot)
+        }
+    }
+    
     @IBAction func addResultTappedButton(_ sender: UIButton) {
         
         guard let searchTF = searchTextField?.text, searchTF != "" else { return dismiss(animated: true) }
