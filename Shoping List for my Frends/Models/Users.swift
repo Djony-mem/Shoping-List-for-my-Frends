@@ -11,6 +11,7 @@ import Firebase
 struct AppUser {
     let uid: String
     let email: String
+    var items: [Item] = []
     
     init(user: User) {
         self.uid = user.uid

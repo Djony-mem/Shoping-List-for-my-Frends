@@ -13,8 +13,6 @@ class ShoppingItemsTableViewCell: UITableViewCell {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var quantity: UILabel!
     
-    var shoppingList: Product!
-    
     func configure(product: Product) {
         self.itemName.text = product.title
         self.quantity.text = product.note

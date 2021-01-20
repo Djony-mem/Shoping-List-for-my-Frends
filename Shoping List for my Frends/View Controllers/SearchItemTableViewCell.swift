@@ -8,16 +8,21 @@
 import UIKit
 
 class SearchItemTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBOutlet weak var checkButtonItem: UIButton!
+    @IBOutlet weak var nameItem: UILabel!
+    @IBOutlet weak var quantityTextField: UITextField!
+    
+    
+    func configure(item: Item) {
+        self.checkButtonItem.layer.cornerRadius = 15
+        self.checkButtonItem.layer.borderWidth = 3
+        self.checkButtonItem.layer.borderColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        self.nameItem.text = item.nameItem
+        
+        if let quantity = quantityTextField.text, quantity != "" {
+           
+        }
     }
 
 }

@@ -17,12 +17,12 @@ class SearchItemViewController: UIViewController {
     var products: [Product] = []
     var user: AppUser!
     var shopList: List!
-    var items: [Item]!
+    var items: [Item]! = []
     var itemsRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemsRef = DatabaseService.shared.getItems(uid: user.uid)
+        itemsRef = DatabaseService.shared.getItemRef(uid: user.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +39,11 @@ class SearchItemViewController: UIViewController {
         let product = Product(title: searchTF,
                               uid: user.uid,
                               note: note ?? "")
-        products.append(product)
+        let item = Item(nameItem: searchTF, uid: user.uid)
+    
         DatabaseService.shared.getListRef(uid: user.uid, list: shopList).child(product.title?.lowercased() ?? "").setValue(product.convertedDictionary())
+        
+        DatabaseService.shared.getItemRef(uid: user.uid).child(item.nameItem?.lowercased() ?? "").setValue(item.convertedDictionary())
         dismiss(animated: true)
     }
     
@@ -48,11 +51,13 @@ class SearchItemViewController: UIViewController {
 
 extension SearchItemViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchProductCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchProductCell", for: indexPath) as! SearchItemTableViewCell
+        let item = items[indexPath.row]
+        cell.configure(item: item)
         cell.backgroundColor = .clear
         return cell
     }

@@ -8,36 +8,9 @@
 import Foundation
 import Firebase
 
-struct Item {
-    let nameItem: String?
-    let uid: String?
-    
-    init(nameItem: String, uid: String) {
-        self.nameItem = nameItem
-        self.uid = uid
-    }
-    
-    init(productDict: [String: Any]) {
-        nameItem = productDict["nameItem"] as? String
-        uid = productDict["uid"] as? String
-    }
-    
-    static func getItems(snapshot: DataSnapshot) -> [Item] {
-        var items = [Item]()
-        guard let snapDictionary = snapshot.value as? [String: [String: String]]
-        else { return [] }
-        
-        for snap in snapDictionary {
-            let item = Item(productDict: snap.value)
-            items.append(item)
-        }
-        return items
-    }
-}
-
 struct Product {
     let title: String?
-    let note: String?
+    var note: String?
     let uid: String?
     var completed: Bool? = false
     

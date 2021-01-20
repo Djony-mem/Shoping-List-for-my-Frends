@@ -107,28 +107,52 @@
                                 <color key="backgroundColor" red="0.81731933021651182" green="0.91761331389623779" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchProductCell" id="fFL-ur-z4d">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchProductCell" id="fFL-ur-z4d" customClass="SearchItemTableViewCell" customModule="Shoping_List_for_my_Frends" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fFL-ur-z4d" id="60R-aX-Z8O">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rXf-tf-QqT">
-                                                    <rect key="frame" x="344" y="5" width="50" height="34"/>
+                                                    <rect key="frame" x="344" y="5" width="50" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="dPj-0S-5CC"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQk-0G-KJr">
+                                                    <rect key="frame" x="8" y="14" width="25" height="25"/>
+                                                    <color key="backgroundColor" red="0.73036378619999998" green="0.82244902850000001" blue="0.90170449019999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="4eu-Nd-i00"/>
+                                                        <constraint firstAttribute="height" constant="25" id="RTI-QN-ZNg"/>
+                                                    </constraints>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azj-05-Daz">
+                                                    <rect key="frame" x="41" y="15" width="46" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="azj-05-Daz" firstAttribute="leading" secondItem="OQk-0G-KJr" secondAttribute="trailing" constant="8" id="L9R-xV-F8E"/>
                                                 <constraint firstAttribute="trailing" secondItem="rXf-tf-QqT" secondAttribute="trailing" constant="20" symbolic="YES" id="OJk-DG-DfT"/>
+                                                <constraint firstItem="azj-05-Daz" firstAttribute="centerY" secondItem="60R-aX-Z8O" secondAttribute="centerY" id="S9z-q6-oey"/>
+                                                <constraint firstItem="OQk-0G-KJr" firstAttribute="top" secondItem="60R-aX-Z8O" secondAttribute="top" constant="14" id="YPu-mc-vd3"/>
+                                                <constraint firstItem="OQk-0G-KJr" firstAttribute="leading" secondItem="60R-aX-Z8O" secondAttribute="leading" constant="8" id="ZIV-dP-EtU"/>
                                                 <constraint firstAttribute="bottom" secondItem="rXf-tf-QqT" secondAttribute="bottom" constant="5" id="bwB-Pa-oMF"/>
                                                 <constraint firstItem="rXf-tf-QqT" firstAttribute="top" secondItem="60R-aX-Z8O" secondAttribute="top" constant="5" id="pYC-m5-bsw"/>
+                                                <constraint firstAttribute="bottom" secondItem="OQk-0G-KJr" secondAttribute="bottom" constant="14" id="zk8-zE-h5K"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkButtonItem" destination="OQk-0G-KJr" id="i0s-UB-XSC"/>
+                                            <outlet property="nemeItem" destination="azj-05-Daz" id="jQF-RE-T6C"/>
+                                            <outlet property="quantityTextField" destination="rXf-tf-QqT" id="cPF-uB-gHm"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

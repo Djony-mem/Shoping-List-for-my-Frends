@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7639F80A25AA7319004B1976 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639F80925AA7319004B1976 /* DatabaseService.swift */; };
 		76480A8725B8CC2400E26789 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76480A8625B8CC2400E26789 /* Product.swift */; };
+		76480A8A25B8E8B100E26789 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76480A8925B8E8B100E26789 /* Item.swift */; };
 		7670D56625B84DA5009D09B1 /* ShoppingItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D56525B84DA5009D09B1 /* ShoppingItemsTableViewCell.swift */; };
 		7670D57C25B8BD0C009D09B1 /* SearchItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D57B25B8BD0C009D09B1 /* SearchItemTableViewCell.swift */; };
 		7682A19625A7CAFB005C4A9E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7682A19525A7CAFB005C4A9E /* .gitignore */; };
@@ -32,6 +33,7 @@
 		2D6B27BB602AAA12D4EC213A /* Pods-Shoping List for my Frends.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shoping List for my Frends.debug.xcconfig"; path = "Target Support Files/Pods-Shoping List for my Frends/Pods-Shoping List for my Frends.debug.xcconfig"; sourceTree = "<group>"; };
 		7639F80925AA7319004B1976 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		76480A8625B8CC2400E26789 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		76480A8925B8E8B100E26789 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		7670D56525B84DA5009D09B1 /* ShoppingItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemsTableViewCell.swift; sourceTree = "<group>"; };
 		7670D57B25B8BD0C009D09B1 /* SearchItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchItemTableViewCell.swift; path = "Shoping List for my Frends/View Controllers/SearchItemTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		7682A19525A7CAFB005C4A9E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				76D8D038257E713100EAE989 /* Users.swift */,
 				76D8D03B257E71ED00EAE989 /* List.swift */,
 				76480A8625B8CC2400E26789 /* Product.swift */,
+				76480A8925B8E8B100E26789 /* Item.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				7670D57C25B8BD0C009D09B1 /* SearchItemTableViewCell.swift in Sources */,
 				76480A8725B8CC2400E26789 /* Product.swift in Sources */,
 				76D8CFEB257AE9D700EAE989 /* ShoppingItemsViewController.swift in Sources */,
+				76480A8A25B8E8B100E26789 /* Item.swift in Sources */,
 				76D8CFC3257AD54F00EAE989 /* AppDelegate.swift in Sources */,
 				76D8CFE7257AE92700EAE989 /* SearchItemViewController.swift in Sources */,
 				76D8CFC5257AD54F00EAE989 /* SceneDelegate.swift in Sources */,
