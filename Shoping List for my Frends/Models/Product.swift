@@ -12,7 +12,7 @@ struct Product {
     let title: String?
     var note: String?
     let uid: String?
-    var completed: Bool? = false
+    var completed: Bool = false
     
     init(title: String, uid: String, note: String) {
         self.title = title
@@ -23,7 +23,7 @@ struct Product {
     init(productDict: [String: Any]) {
         title = productDict["title"] as? String
         uid = productDict["uid"] as? String
-        completed = productDict["uid"] as? Bool
+        completed = productDict["completed"] as! Bool
         note = productDict["note"] as? String
     }
     
@@ -40,6 +40,6 @@ struct Product {
     }
     
     func convertedDictionary() -> Any {
-        return ["title" : title ?? "", "uid": uid ?? "", "completed": completed ?? false, "note": note ?? ""]
+        return ["title" : title ?? "", "uid": uid ?? "", "completed": completed, "note": note ?? ""]
     }
 }
