@@ -13,6 +13,7 @@ class SearchItemViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField?
     @IBOutlet weak var quantityTextField: UITextField?
     @IBOutlet weak var filterSegntedControl: UISegmentedControl!
+    @IBOutlet weak var tableViewItems: UITableView!
     
     var products: [Product] = []
     var user: AppUser!
@@ -29,6 +30,7 @@ class SearchItemViewController: UIViewController {
         super.viewWillAppear(animated)
         itemsRef.observe(.value) {[weak self] snapshot in
             self?.items = Item.getItems(snapshot: snapshot)
+            self?.tableViewItems.reloadData()
         }
     }
     
@@ -49,7 +51,7 @@ class SearchItemViewController: UIViewController {
     
 }
 
-extension SearchItemViewController: UITableViewDataSource {
+extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         items.count
     }
