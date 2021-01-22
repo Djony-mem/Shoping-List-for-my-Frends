@@ -6,6 +6,9 @@
 //
 
 import UIKit
+protocol SearchItemCellDelegate {
+    func buttonTapped(sender: SearchItemTableViewCell, check: Bool, itemId: String)
+}
 
 class SearchItemTableViewCell: UITableViewCell {
     
@@ -13,17 +16,24 @@ class SearchItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nameItem: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     
+    var itemUid: String?
+    var delegate: SearchItemCellDelegate?
     
-    func configure(item: Item) {
+    func configure(for item: Item,with editStatus: Bool, delegate: SearchItemCellDelegate) {
         self.checkButtonItem.layer.cornerRadius = 12
-//        self.checkButtonItem.layer.borderWidth = 2
-//        self.checkButtonItem.layer.borderColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         self.checkButtonItem.tintColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        self.checkButtonItem.setBackgroundImage(UIImage(named: "check"), for: .selected)
+        self.checkButtonItem.setBackgroundImage(UIImage(systemName: "plus.circle"), for: .normal)
         self.nameItem.text = item.nameItem
+        self.itemUid = item.uid
         
-        if let quantity = quantityTextField.text, quantity != "" {
-           
+        if editStatus {
+            if item.status{
+                self.checkButtonItem.tintColor = .green
+            }
         }
+        
+        self.delegate = delegate
     }
 
 }

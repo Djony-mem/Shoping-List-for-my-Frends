@@ -75,7 +75,7 @@ class AllListsViewController: UITableViewController {
             guard let textField = alertController.textFields?.first, textField.text != "" else { return }
 
             let list = List(title: textField.text!, uid: (self?.user.uid)!)
-            let listRef = self?.shopListRef.child(list.title?.lowercased() ?? "")
+            let listRef = self?.shopListRef.child(list.title.lowercased() )
             listRef?.setValue(list.convertedDictionary())
         }
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)

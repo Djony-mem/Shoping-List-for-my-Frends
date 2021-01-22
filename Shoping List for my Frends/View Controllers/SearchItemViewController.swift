@@ -43,9 +43,9 @@ class SearchItemViewController: UIViewController {
                               note: note ?? "")
         let item = Item(nameItem: searchTF, uid: user.uid)
     
-        DatabaseService.shared.getListRef(uid: user.uid, list: shopList).child(product.title?.lowercased() ?? "").setValue(product.convertedDictionary())
+        DatabaseService.shared.getListRef(uid: user.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
         
-        DatabaseService.shared.getItemRef(uid: user.uid).child(item.nameItem?.lowercased() ?? "").setValue(item.convertedDictionary())
+        DatabaseService.shared.getItemRef(uid: user.uid).child(item.nameItem.lowercased()).setValue(item.convertedDictionary())
         dismiss(animated: true)
     }
     
@@ -59,9 +59,16 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProductCell", for: indexPath) as! SearchItemTableViewCell
         let item = items[indexPath.row]
-        cell.configure(item: item)
+        cell.configure(for: item, with: true, delegate: self)
         cell.backgroundColor = .clear
         return cell
+    }
+    
+    
+}
+
+extension SearchItemViewController: SearchItemCellDelegate {
+    func buttonTapped(sender: SearchItemTableViewCell, check: Bool, itemId: String) {
     }
     
     

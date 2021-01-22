@@ -9,9 +9,9 @@ import Foundation
 import Firebase
 
 struct Item {
-    let nameItem: String?
-    let uid: String?
-    var status: Bool? = false
+    let nameItem: String
+    let uid: String
+    var status: Bool = false
     
     init(nameItem: String, uid: String) {
         self.nameItem = nameItem
@@ -19,9 +19,9 @@ struct Item {
     }
     
     init(productDict: [String: Any]) {
-        nameItem = productDict["nameItem"] as? String
-        uid = productDict["uid"] as? String
-        status = productDict["status"] as? Bool
+        nameItem = productDict["nameItem"] as! String
+        uid = productDict["uid"] as! String
+        status = productDict["status"] as! Bool
     }
     
     static func getItems(snapshot: DataSnapshot) -> [Item] {
@@ -36,8 +36,8 @@ struct Item {
         return items
     }
     func convertedDictionary() -> Any {
-        return ["nameItem": nameItem ?? "",
-                "uid": uid ?? "",
-                "status": status ?? false]
+        return ["nameItem": nameItem,
+                "uid": uid,
+                "status": status]
     }
 }

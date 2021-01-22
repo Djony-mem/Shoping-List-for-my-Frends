@@ -68,7 +68,7 @@ class DatabaseService {
     }
     
     func getListRef(uid: String, list: List ) -> DatabaseReference {
-        self.allListRef.child(uid).child("shopList").child(list.title?.lowercased() ?? "").child("products")
+        self.allListRef.child(uid).child("shopList").child(list.title.lowercased() ).child("products")
     }
     func getItemRef(uid: String) -> DatabaseReference {
         self.allListRef.child(uid).child("items")

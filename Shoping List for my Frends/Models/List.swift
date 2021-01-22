@@ -9,9 +9,9 @@ import Foundation
 import Firebase
 
 struct List {
-    let title: String?
-    let uid: String?
-    var completed: Bool? = false
+    let title: String
+    let uid: String
+    var completed: Bool = false
     var product: [Product]?
     
     init(title: String, uid: String, product: [Product] = [], completed: Bool = false) {
@@ -20,9 +20,9 @@ struct List {
     }
     
     init?(dictionary: [String: Any]) {
-        title = dictionary["title"] as? String
-        uid = dictionary["uid"] as? String
-        completed = dictionary["completed"] as? Bool
+        title = dictionary["title"] as! String
+        uid = dictionary["uid"] as! String
+        completed = dictionary["completed"] as! Bool
         
         let resultDict = dictionary["product"] as? [[String: Any]]
         product = resultDict?.compactMap {Product(productDict: $0)}
@@ -46,6 +46,6 @@ struct List {
     }
     
     func convertedDictionary() -> Any {
-        return ["title" : title!, "uid": uid!, "completed": completed ?? false]
+        return ["title" : title, "uid": uid, "completed": completed]
     }
 }
