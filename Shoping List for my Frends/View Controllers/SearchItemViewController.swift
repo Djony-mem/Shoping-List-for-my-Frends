@@ -15,7 +15,7 @@ class SearchItemViewController: UIViewController {
     @IBOutlet weak var filterSegntedControl: UISegmentedControl!
     @IBOutlet weak var tableViewItems: UITableView!
     
-    var products: [Product] = []
+    var products: Product?
     var user: AppUser?
     var shopList: List!
     var items: [Item] = []
@@ -43,6 +43,7 @@ class SearchItemViewController: UIViewController {
         let product = Product(title: searchTF,
                               uid: userApp.uid,
                               note: note ?? "")
+        
         let item = Item(itemID: "\(searchTF)ID", nameItem: searchTF, uid: userApp.uid)
         guard let shopList = shopList else { return }
         DatabaseService.shared.getListRef(uid: userApp.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
@@ -72,10 +73,9 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
 extension SearchItemViewController: SearchItemCellDelegate {
     func buttonTapped(sender: SearchItemTableViewCell) {
         if var item = sender.item {
-            item.checkItem()
+            item.checkItem(shopList: shopList)
             print("func checkItem")
         }
-        print("Вошел но не реализовался!")
         
     }
     
