@@ -42,4 +42,14 @@ struct Product {
     func convertedDictionary() -> Any {
         return ["title" : title, "uid": uid, "completed": completed, "note": note ?? ""]
     }
+    
+    mutating func checkItem(shopList: List) {
+            completed.toggle()
+        if completed {
+            DatabaseService.shared.getItemRef(uid: uid).child(title.lowercased()).updateChildValues(["completed": true])
+            DatabaseService.shared.getItemRef(uid: uid).child(title.lowercased()).setValue(convertedDictionary())
+        } else {
+            DatabaseService.shared.getItemRef(uid: uid).child(title.lowercased()).updateChildValues(["completed": false])
+        }
+    }
 }

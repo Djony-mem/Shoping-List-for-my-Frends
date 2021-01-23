@@ -16,15 +16,15 @@ class SearchItemTableViewCell: UITableViewCell {
     @IBOutlet weak var nameItem: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     
-    var item: Item!
+    var item: Product!
     var delegate: SearchItemCellDelegate?
     
-    func configure(for item: Item,with editStatus: Bool, delegate: SearchItemCellDelegate) {
+    func configure(for item: Product ,with editStatus: Bool, delegate: SearchItemCellDelegate) {
         self.checkButtonItem.layer.cornerRadius = 14
-        self.nameItem.text = item.nameItem
+        self.nameItem.text = item.title
         self.item = item
 
-            if item.status{
+            if item.completed {
                 self.checkButtonItem.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 self.checkButtonItem.setBackgroundImage(UIImage(systemName: "face.smiling"), for: .normal)
                 self.checkButtonItem.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)

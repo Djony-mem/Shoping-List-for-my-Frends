@@ -15,10 +15,9 @@ class SearchItemViewController: UIViewController {
     @IBOutlet weak var filterSegntedControl: UISegmentedControl!
     @IBOutlet weak var tableViewItems: UITableView!
     
-    var products: Product?
     var user: AppUser?
     var shopList: List!
-    var items: [Item] = []
+    var items: [Product] = []
     var itemsRef: DatabaseReference?
     
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class SearchItemViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         itemsRef?.observe(.value) {[weak self] snapshot in
-            self?.items = Item.getItems(snapshot: snapshot)
+            self?.items = Product.getShopingItem(snapshot: snapshot) ?? []
             self?.tableViewItems.reloadData()
         }
     }
@@ -43,12 +42,9 @@ class SearchItemViewController: UIViewController {
         let product = Product(title: searchTF,
                               uid: userApp.uid,
                               note: note ?? "")
-        
-        let item = Item(itemID: "\(searchTF)ID", nameItem: searchTF, uid: userApp.uid)
         guard let shopList = shopList else { return }
         DatabaseService.shared.getListRef(uid: userApp.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
-        
-        DatabaseService.shared.getItemRef(uid: userApp.uid).child(item.nameItem.lowercased()).setValue(item.convertedDictionary())
+        DatabaseService.shared.getItemRef(uid: userApp.uid).child(product.title.lowercased()).setValue(product.convertedDictionary())
         dismiss(animated: true)
     }
     
