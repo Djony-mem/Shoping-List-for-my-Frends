@@ -123,15 +123,17 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQk-0G-KJr">
-                                                    <rect key="frame" x="8" y="12" width="30" height="29"/>
+                                                    <rect key="frame" x="8" y="12.5" width="28" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="QmU-KB-A8D"/>
-                                                        <constraint firstAttribute="height" constant="30" id="wxG-T7-EFR"/>
+                                                        <constraint firstAttribute="width" constant="28" id="QmU-KB-A8D"/>
+                                                        <constraint firstAttribute="height" constant="28" id="wxG-T7-EFR"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="plus.circle" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="checkButtonTapped:" destination="fFL-ur-z4d" eventType="touchUpInside" id="YS8-li-xOf"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azj-05-Daz">
-                                                    <rect key="frame" x="46" y="16" width="278" height="21.5"/>
+                                                    <rect key="frame" x="44" y="16" width="280" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -471,7 +473,6 @@
         <image name="check" width="64" height="64"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.badge.plus" catalog="system" width="128" height="124"/>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -9,14 +9,15 @@ import UIKit
 import Firebase
 
 class AllListsViewController: UITableViewController {
-    var shopListRef: DatabaseReference!
-    var user: AppUser!
+    var shopListRef: DatabaseReference?
+    var user: AppUser?
     var shopLists: [List] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let currentUser = DatabaseService.shared.authCurrentUserRef else { return }
         user = AppUser(user: currentUser)
+        guard let user = user else { return }
         shopListRef = DatabaseService.shared.getShoppingListRef(uid: user.uid)
         
         tableView.rowHeight = 80
@@ -24,7 +25,7 @@ class AllListsViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        shopListRef.observe(.value) {[weak self] snapshot in
+        shopListRef?.observe(.value) {[weak self] snapshot in
             self?.shopLists = List.getShopingList(snapshot: snapshot) ?? []
             self?.tableView.reloadData()
         }
@@ -74,8 +75,8 @@ class AllListsViewController: UITableViewController {
             
             guard let textField = alertController.textFields?.first, textField.text != "" else { return }
 
-            let list = List(title: textField.text!, uid: (self?.user.uid)!)
-            let listRef = self?.shopListRef.child(list.title.lowercased() )
+            let list = List(title: textField.text!, uid: (self?.user?.uid)!)
+            let listRef = self?.shopListRef?.child(list.title.lowercased() )
             listRef?.setValue(list.convertedDictionary())
         }
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)

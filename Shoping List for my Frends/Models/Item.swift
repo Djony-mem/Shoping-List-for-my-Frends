@@ -9,16 +9,20 @@ import Foundation
 import Firebase
 
 struct Item {
+    let itemID: String
     let nameItem: String
     let uid: String
     var status: Bool = false
     
-    init(nameItem: String, uid: String) {
+    
+    init(itemID: String, nameItem: String, uid: String) {
+        self.itemID = itemID
         self.nameItem = nameItem
         self.uid = uid
     }
     
     init(productDict: [String: Any]) {
+        itemID = productDict["itemID"] as! String
         nameItem = productDict["nameItem"] as! String
         uid = productDict["uid"] as! String
         status = productDict["status"] as! Bool
@@ -36,8 +40,14 @@ struct Item {
         return items
     }
     func convertedDictionary() -> Any {
-        return ["nameItem": nameItem,
+        return ["itemID": itemID,
+                "nameItem": nameItem,
                 "uid": uid,
                 "status": status]
+    }
+    
+    mutating func checkItem() {
+        status = true
+        DatabaseService.shared.getItemRef(uid: uid).updateChildValues(["status":false])
     }
 }

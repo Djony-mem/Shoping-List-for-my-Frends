@@ -16,19 +16,20 @@ class SearchItemViewController: UIViewController {
     @IBOutlet weak var tableViewItems: UITableView!
     
     var products: [Product] = []
-    var user: AppUser!
+    var user: AppUser?
     var shopList: List!
-    var items: [Item]! = []
-    var itemsRef: DatabaseReference!
+    var items: [Item] = []
+    var itemsRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemsRef = DatabaseService.shared.getItemRef(uid: user.uid)
+        guard let userApp = user else { return }
+        itemsRef = DatabaseService.shared.getItemRef(uid: userApp.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        itemsRef.observe(.value) {[weak self] snapshot in
+        itemsRef?.observe(.value) {[weak self] snapshot in
             self?.items = Item.getItems(snapshot: snapshot)
             self?.tableViewItems.reloadData()
         }
@@ -37,15 +38,16 @@ class SearchItemViewController: UIViewController {
     @IBAction func addResultTappedButton(_ sender: UIButton) {
         
         guard let searchTF = searchTextField?.text, searchTF != "" else { return dismiss(animated: true) }
+        guard let userApp = user else { return }
         let note = quantityTextField?.text
         let product = Product(title: searchTF,
-                              uid: user.uid,
+                              uid: userApp.uid,
                               note: note ?? "")
-        let item = Item(nameItem: searchTF, uid: user.uid)
-    
-        DatabaseService.shared.getListRef(uid: user.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
+        let item = Item(itemID: "\(searchTF)ID", nameItem: searchTF, uid: userApp.uid)
+        guard let shopList = shopList else { return }
+        DatabaseService.shared.getListRef(uid: userApp.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
         
-        DatabaseService.shared.getItemRef(uid: user.uid).child(item.nameItem.lowercased()).setValue(item.convertedDictionary())
+        DatabaseService.shared.getItemRef(uid: userApp.uid).child(item.nameItem.lowercased()).setValue(item.convertedDictionary())
         dismiss(animated: true)
     }
     
@@ -68,8 +70,9 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension SearchItemViewController: SearchItemCellDelegate {
-    func buttonTapped(sender: SearchItemTableViewCell, check: Bool, itemId: String) {
+    func buttonTapped(sender: SearchItemTableViewCell, check: Bool, item: Item) {
+        print("Вошел но не реализовался!")
     }
     
-    
+
 }

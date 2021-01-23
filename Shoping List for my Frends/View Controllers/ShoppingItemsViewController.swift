@@ -12,7 +12,7 @@ class ShoppingItemsViewController: UITableViewController {
     
     var user: AppUser!
     var shopList: List!
-    var listRef: DatabaseReference!
+    var listRef: DatabaseReference?
     var products: [Product] = []
     
 
@@ -24,7 +24,7 @@ class ShoppingItemsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        listRef.observe(.value) {[weak self] snapshot in
+        listRef?.observe(.value) {[weak self] snapshot in
             self?.products = Product.getShopingItem(snapshot: snapshot) ?? []
             
             self?.tableView.reloadData()
