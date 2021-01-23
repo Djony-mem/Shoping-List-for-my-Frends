@@ -13,22 +13,27 @@ class ShoppingItemsViewController: UITableViewController {
     var user: AppUser!
     var shopList: List!
     var listRef: DatabaseReference?
+    var itemsRef: DatabaseReference?
     var products: [Product] = []
+    var items: [Product] = []
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = shopList.title
         listRef = DatabaseService.shared.getListRef(uid: user.uid, list: shopList)
+        itemsRef = DatabaseService.shared.getItemRef(uid: user.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         listRef?.observe(.value) {[weak self] snapshot in
             self?.products = Product.getShopingItem(snapshot: snapshot) ?? []
-            
             self?.tableView.reloadData()
         }
+        itemsRef?.observe(.value) { [weak self] snapshot in
+                self?.items = Product.getShopingItem(snapshot: snapshot) ?? []
+            }
     }
 
     // MARK: - Table view data source
@@ -58,4 +63,10 @@ class ShoppingItemsViewController: UITableViewController {
         
     }
 
+    @IBAction func addItemTappedButton(_ sender: Any) {
+        for item in items {
+            itemsRef?.child(item.title.lowercased()).updateChildValues(["completed": false])
+        }
+        performSegue(withIdentifier: "showItems", sender: nil)
+    }
 }

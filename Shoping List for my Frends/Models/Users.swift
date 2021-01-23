@@ -17,4 +17,20 @@ struct AppUser {
         self.uid = user.uid
         self.email = user.email!
     }
+//    
+//    static func getItems(snapshot: DataSnapshot) -> [Product]? {
+//        var products = [Product]()
+//        guard let snapDictionary = snapshot.value as? [String: [String: Any]]
+//        else {
+//            return nil
+//        }
+//        for snap in snapDictionary {
+//            guard let product = Product(productDict: snap.value)
+//            else {
+//                continue
+//            }
+//            products.append(product)
+//        }
+//       return products
+//    }
 }

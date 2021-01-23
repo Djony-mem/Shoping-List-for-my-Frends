@@ -35,16 +35,17 @@ class SearchItemViewController: UIViewController {
     }
     
     @IBAction func addResultTappedButton(_ sender: UIButton) {
-        
-        guard let searchTF = searchTextField?.text, searchTF != "" else { return dismiss(animated: true) }
-        guard let userApp = user else { return }
-        let note = quantityTextField?.text
-        let product = Product(title: searchTF,
-                              uid: userApp.uid,
-                              note: note ?? "")
-        guard let shopList = shopList else { return }
-        DatabaseService.shared.getListRef(uid: userApp.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
-        DatabaseService.shared.getItemRef(uid: userApp.uid).child(product.title.lowercased()).setValue(product.convertedDictionary())
+//        
+//        guard let searchTF = searchTextField?.text, searchTF != "" else { return dismiss(animated: true) }
+//        guard let userApp = user else { return }
+//        let note = quantityTextField?.text
+//        let product = Product(title: searchTF,
+//                              uid: userApp.uid,
+//                              note: note ?? "")
+//        guard let shopList = shopList else { return }
+//        
+//        DatabaseService.shared.getListRef(uid: userApp.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
+//        DatabaseService.shared.getItemRef(uid: userApp.uid).child(product.title.lowercased()).setValue(product.convertedDictionary())
         dismiss(animated: true)
     }
     
@@ -70,7 +71,6 @@ extension SearchItemViewController: SearchItemCellDelegate {
     func buttonTapped(sender: SearchItemTableViewCell) {
         if var item = sender.item {
             item.checkItem(shopList: shopList)
-            print("func checkItem")
         }
         
     }

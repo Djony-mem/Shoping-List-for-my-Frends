@@ -13,10 +13,12 @@ class ShoppingItemsTableViewCell: UITableViewCell {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var quantity: UILabel!
     
+    var product: Product!
+    
     func configure(product: Product) {
         self.itemName.text = product.title
         self.quantity.text = product.note
-        self.chekButton.layer.cornerRadius = 12
+        self.chekButton.layer.cornerRadius = 14
         if product.completed {
             self.chekButton.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             self.chekButton.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -24,6 +26,8 @@ class ShoppingItemsTableViewCell: UITableViewCell {
         } else {
             self.chekButton.tintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         }
+        
+        self.product = product
     }
     @IBAction func checkTappedButton(_ sender: UIButton) {
 
