@@ -46,8 +46,13 @@ struct Item {
                 "status": status]
     }
     
-    mutating func checkItem() {
-        status = true
-        DatabaseService.shared.getItemRef(uid: uid).updateChildValues(["status":false])
+    mutating func checkItem(shopList: List) {
+            status.toggle()
+        if status {
+            DatabaseService.shared.getItemRef(uid: uid).child(nameItem.lowercased()).updateChildValues(["status": true])
+            DatabaseService.shared.getItemRef(uid: uid).child(nameItem.lowercased()).setValue(convertedDictionary())
+        } else {
+            DatabaseService.shared.getItemRef(uid: uid).child(nameItem.lowercased()).updateChildValues(["status": false])
+        }
     }
 }

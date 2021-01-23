@@ -70,8 +70,13 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension SearchItemViewController: SearchItemCellDelegate {
-    func buttonTapped(sender: SearchItemTableViewCell, check: Bool, item: Item) {
+    func buttonTapped(sender: SearchItemTableViewCell) {
+        if var item = sender.item {
+            item.checkItem()
+            print("func checkItem")
+        }
         print("Вошел но не реализовался!")
+        
     }
     
 
