@@ -49,6 +49,7 @@ struct Product {
             DatabaseService.shared.getItemRef(uid: uid).child(title.lowercased()).updateChildValues(["completed": true])
             DatabaseService.shared.getItemRef(uid: uid).child(title.lowercased()).setValue(convertedDictionary())
             DatabaseService.shared.getListRef(uid: uid, list: shopList).child(title.lowercased()).setValue(convertedDictionary())
+            DatabaseService.shared.getListRef(uid: uid, list: shopList).child(title.lowercased()).updateChildValues(["completed": false])
         } else {
             DatabaseService.shared.getItemRef(uid: uid).child(title.lowercased()).updateChildValues(["completed": false])
             DatabaseService.shared.getListRef(uid: uid, list: shopList).child(title.lowercased()).removeValue()

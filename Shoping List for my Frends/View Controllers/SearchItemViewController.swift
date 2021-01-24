@@ -11,8 +11,6 @@ import Firebase
 class SearchItemViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField?
-    @IBOutlet weak var quantityTextField: UITextField?
-    @IBOutlet weak var filterSegntedControl: UISegmentedControl!
     @IBOutlet weak var tableViewItems: UITableView!
     
     var user: AppUser?

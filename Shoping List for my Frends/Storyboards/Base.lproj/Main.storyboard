@@ -67,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-CP-DtO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2oD-cI-yxn">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -96,15 +96,6 @@
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="N5W-fj-VJZ">
-                                <rect key="frame" x="16" y="104" width="382" height="32"/>
-                                <color key="backgroundColor" red="0.66949012490000004" green="0.87950111040000001" blue="0.75775251929999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <segments>
-                                    <segment title="Недавние"/>
-                                    <segment title="Популярные"/>
-                                </segments>
-                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3QQ-ep-Ml0">
                                 <rect key="frame" x="0.0" y="155" width="414" height="741"/>
                                 <color key="backgroundColor" red="0.81731933021651182" green="0.91761331389623779" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -167,20 +158,16 @@
                         <viewLayoutGuide key="safeArea" id="iUn-rN-NjY"/>
                         <color key="backgroundColor" red="0.81731933021651182" green="0.91761331389623779" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3QQ-ep-Ml0" firstAttribute="top" secondItem="N5W-fj-VJZ" secondAttribute="bottom" constant="20" id="8I7-9R-dLb"/>
-                            <constraint firstItem="N5W-fj-VJZ" firstAttribute="top" secondItem="DnR-U6-Mpi" secondAttribute="bottom" constant="30" id="B4W-RS-cIK"/>
                             <constraint firstItem="iUn-rN-NjY" firstAttribute="trailing" secondItem="f0e-CP-DtO" secondAttribute="trailing" id="LBI-JQ-Lgd"/>
+                            <constraint firstItem="3QQ-ep-Ml0" firstAttribute="top" secondItem="f0e-CP-DtO" secondAttribute="bottom" constant="41" id="NSy-6G-AIH"/>
                             <constraint firstAttribute="bottom" secondItem="3QQ-ep-Ml0" secondAttribute="bottom" id="R32-yz-9P2"/>
-                            <constraint firstItem="iUn-rN-NjY" firstAttribute="trailing" secondItem="N5W-fj-VJZ" secondAttribute="trailing" constant="16" id="c1s-Eq-Yx7"/>
+                            <constraint firstItem="f0e-CP-DtO" firstAttribute="top" secondItem="iUn-rN-NjY" secondAttribute="top" constant="40" id="Spe-SZ-NQO"/>
                             <constraint firstItem="3QQ-ep-Ml0" firstAttribute="leading" secondItem="iUn-rN-NjY" secondAttribute="leading" id="jAt-EC-U5x"/>
                             <constraint firstItem="f0e-CP-DtO" firstAttribute="leading" secondItem="iUn-rN-NjY" secondAttribute="leading" id="nhx-E7-pG0"/>
-                            <constraint firstItem="N5W-fj-VJZ" firstAttribute="leading" secondItem="iUn-rN-NjY" secondAttribute="leading" constant="16" id="w68-j2-pPw"/>
-                            <constraint firstItem="f0e-CP-DtO" firstAttribute="top" secondItem="iUn-rN-NjY" secondAttribute="top" id="zke-bg-qvh"/>
                             <constraint firstItem="3QQ-ep-Ml0" firstAttribute="trailing" secondItem="iUn-rN-NjY" secondAttribute="trailing" id="zoD-dp-Hms"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="filterSegntedControl" destination="N5W-fj-VJZ" id="5GP-FS-dDa"/>
                         <outlet property="searchTextField" destination="DnR-U6-Mpi" id="hTU-R8-QX8"/>
                         <outlet property="tableViewItems" destination="3QQ-ep-Ml0" id="guL-Jr-Vlr"/>
                     </connections>
