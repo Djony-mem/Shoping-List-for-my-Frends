@@ -57,7 +57,8 @@ class ShoppingItemsViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let searchItemVC = segue.destination as! SearchItemViewController
+        let navController = segue.destination as! UINavigationController
+        let searchItemVC = navController.viewControllers.first as! SearchItemViewController
         searchItemVC.user = user
         searchItemVC.shopList = shopList
         

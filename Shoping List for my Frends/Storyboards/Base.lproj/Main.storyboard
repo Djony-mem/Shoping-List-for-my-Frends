@@ -63,11 +63,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="bOV-Uh-xZi" customClass="SearchItemViewController" customModule="Shoping_List_for_my_Frends" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vrI-iM-C4w">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3QQ-ep-Ml0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.81731933021651182" green="0.91761331389623779" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -134,14 +134,14 @@
                             <constraint firstItem="3QQ-ep-Ml0" firstAttribute="trailing" secondItem="iUn-rN-NjY" secondAttribute="trailing" id="zoD-dp-Hms"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rts-ed-pnL"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="rts-ed-pnL"/>
                     <connections>
                         <outlet property="tableViewItems" destination="3QQ-ep-Ml0" id="guL-Jr-Vlr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPN-3g-l2G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1545" y="71"/>
+            <point key="canvasLocation" x="2245" y="71"/>
         </scene>
         <!--Покупки-->
         <scene sceneID="du7-Xc-vTp">
@@ -237,7 +237,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <segue destination="bOV-Uh-xZi" kind="show" identifier="showItems" id="qif-c6-aPo"/>
+                        <segue destination="4f7-bF-0U8" kind="presentation" identifier="showItems" id="qif-c6-aPo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J8p-d8-1sJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -424,6 +424,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwY-dw-R0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-643" y="71"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jlp-9V-HIH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="4f7-bF-0U8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LK8-7j-whb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bOV-Uh-xZi" kind="relationship" relationship="rootViewController" id="rhL-x5-DvC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vy6-ji-rLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1544.9275362318842" y="70.982142857142847"/>
         </scene>
     </scenes>
     <resources>

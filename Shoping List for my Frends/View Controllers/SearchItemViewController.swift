@@ -10,18 +10,31 @@ import Firebase
 
 class SearchItemViewController: UIViewController {
 
-    @IBOutlet weak var searchTextField: UITextField?
     @IBOutlet weak var tableViewItems: UITableView!
     
-    var user: AppUser?
+    var user: AppUser!
     var shopList: List!
     var items: [Product] = []
     var itemsRef: DatabaseReference?
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filteredItems = [Product]()
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let userApp = user else { return }
-        itemsRef = DatabaseService.shared.getItemRef(uid: userApp.uid)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Что купить?"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        itemsRef = DatabaseService.shared.getItemRef(uid: user.uid)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,13 +63,22 @@ class SearchItemViewController: UIViewController {
 }
 
 extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        items.count
+        if isFiltering {
+            return filteredItems.count
+        }
+       return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProductCell", for: indexPath) as! SearchItemTableViewCell
-        let item = items[indexPath.row]
+        var item: Product
+        
+        if isFiltering {
+            item = filteredItems[indexPath.row]
+        }
+            item = items[indexPath.row]
         cell.configure(for: item, with: true, delegate: self)
         cell.backgroundColor = .clear
         return cell
@@ -66,12 +88,26 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension SearchItemViewController: SearchItemCellDelegate {
+    
     func buttonTapped(sender: SearchItemTableViewCell) {
         if var item = sender.item {
             item.checkItem(shopList: shopList)
         }
         
     }
-    
+}
 
+extension SearchItemViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterrContentForSearchText(searchController.searchBar.text ?? "")
+    }
+    
+    private func filterrContentForSearchText(_ searchText: String) {
+        
+        filteredItems = items.filter({ (item: Product) -> Bool in
+            return item.title.lowercased().contains(searchText.lowercased())
+        })
+        tableViewItems.reloadData()
+    }
 }
