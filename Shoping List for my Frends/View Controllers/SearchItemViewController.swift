@@ -16,6 +16,7 @@ class SearchItemViewController: UIViewController {
     var shopList: List!
     var items: [Product] = []
     var itemsRef: DatabaseReference?
+    var sortedItems: [Product] = []
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var filteredItems = [Product]()
@@ -35,31 +36,17 @@ class SearchItemViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         itemsRef = DatabaseService.shared.getItemRef(uid: user.uid)
+        print("Yepp 3")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         itemsRef?.observe(.value) {[weak self] snapshot in
             self?.items = Product.getShopingItem(snapshot: snapshot) ?? []
+            self?.sortedItems = (self?.items.sorted(by: { $0.title > $1.title })) ?? []
             self?.tableViewItems.reloadData()
         }
     }
-    
-    @IBAction func addResultTappedButton(_ sender: UIButton) {
-//        
-//        guard let searchTF = searchTextField?.text, searchTF != "" else { return dismiss(animated: true) }
-//        guard let userApp = user else { return }
-//        let note = quantityTextField?.text
-//        let product = Product(title: searchTF,
-//                              uid: userApp.uid,
-//                              note: note ?? "")
-//        guard let shopList = shopList else { return }
-//        
-//        DatabaseService.shared.getListRef(uid: userApp.uid, list: shopList).child(product.title.lowercased()).setValue(product.convertedDictionary())
-//        DatabaseService.shared.getItemRef(uid: userApp.uid).child(product.title.lowercased()).setValue(product.convertedDictionary())
-        dismiss(animated: true)
-    }
-    
 }
 
 extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
@@ -67,8 +54,9 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
             return filteredItems.count
+            
         }
-       return items.count
+        return sortedItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,8 +65,10 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
         
         if isFiltering {
             item = filteredItems[indexPath.row]
+            
+        } else {
+            item = sortedItems[indexPath.row]
         }
-            item = items[indexPath.row]
         cell.configure(for: item, with: true, delegate: self)
         cell.backgroundColor = .clear
         return cell
@@ -105,7 +95,7 @@ extension SearchItemViewController: UISearchResultsUpdating {
     
     private func filterrContentForSearchText(_ searchText: String) {
         
-        filteredItems = items.filter({ (item: Product) -> Bool in
+        filteredItems = sortedItems.filter({ (item: Product) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
         })
         tableViewItems.reloadData()

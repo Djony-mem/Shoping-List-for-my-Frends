@@ -29,6 +29,7 @@ class SearchItemTableViewCell: UITableViewCell {
         self.checkButtonItem.layer.cornerRadius = 14
         self.nameItem.text = item.title
         self.item = item
+        
 
             if item.completed {
                 self.checkButtonItem.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

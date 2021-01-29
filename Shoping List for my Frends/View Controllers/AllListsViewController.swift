@@ -27,6 +27,7 @@ class AllListsViewController: UITableViewController {
         super.viewWillAppear(animated)
         shopListRef?.observe(.value) {[weak self] snapshot in
             self?.shopLists = List.getShopingList(snapshot: snapshot) ?? []
+            
             self?.tableView.reloadData()
         }
     }
