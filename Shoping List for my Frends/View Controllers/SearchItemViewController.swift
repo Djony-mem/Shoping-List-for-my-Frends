@@ -36,7 +36,6 @@ class SearchItemViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         itemsRef = DatabaseService.shared.getItemRef(uid: user.uid)
-        print("Yepp 3")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,8 +52,8 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
+            print("ToTo")
             return filteredItems.count
-            
         }
         return sortedItems.count
     }
@@ -62,19 +61,23 @@ extension SearchItemViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchProductCell", for: indexPath) as! SearchItemTableViewCell
         var item: Product
+        var editStatus: Bool
+        print("я в ячейке")
         
         if isFiltering {
             item = filteredItems[indexPath.row]
-            
+            editStatus = true
+            print("yapp 1")
         } else {
             item = sortedItems[indexPath.row]
+            editStatus = false
+            print("yapp 2")
         }
-        cell.configure(for: item, with: true, delegate: self)
+        cell.configure(for: item, with: editStatus, delegate: self, searchText: self.searchController.searchBar.text ?? "")
+
         cell.backgroundColor = .clear
         return cell
     }
-    
-    
 }
 
 extension SearchItemViewController: SearchItemCellDelegate {

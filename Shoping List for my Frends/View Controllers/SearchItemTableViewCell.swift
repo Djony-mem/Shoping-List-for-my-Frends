@@ -23,13 +23,19 @@ class SearchItemTableViewCell: UITableViewCell {
         super.awakeFromNib()
         infoLabel.alpha = 0
         infoLabel.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        print("Я в кастомной ячейке")
     }
 
-    func configure(for item: Product ,with editStatus: Bool, delegate: SearchItemCellDelegate) {
+    func configure(for item: Product ,with editStatus: Bool, delegate: SearchItemCellDelegate, searchText: String) {
         self.checkButtonItem.layer.cornerRadius = 14
         self.nameItem.text = item.title
         self.item = item
         
+        if editStatus {
+            DatabaseService.shared.getItemRef(uid: item.uid).child(searchText).setValue(item.convertedDictionary())
+            self.nameItem.text = searchText.lowercased()
+            print("yapp 1")
+        }
 
             if item.completed {
                 self.checkButtonItem.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
